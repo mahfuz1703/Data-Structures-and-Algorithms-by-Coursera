@@ -1,4 +1,5 @@
-#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
 
 int get_fibonacci_last_digit_naive(int n) {
     if (n <= 1)
@@ -16,9 +17,23 @@ int get_fibonacci_last_digit_naive(int n) {
     return current % 10;
 }
 
+int const mx = 1e7 + 123;
+int arr[mx];
+int get_fibonacci_last_digit_efficient(int n){
+    arr[0] = 0;
+    arr[1] = 1;
+
+    for(int i = 2; i <= n; i++){
+        arr[i] = (arr[i-1] + arr[i-2]) % 10; 
+    }
+    return arr[n];
+}
+
 int main() {
     int n;
-    std::cin >> n;
-    int c = get_fibonacci_last_digit_naive(n);
-    std::cout << c << '\n';
-    }
+    cin >> n;
+    // int c = get_fibonacci_last_digit_naive(n);
+    // cout << c << '\n';
+    int ans = get_fibonacci_last_digit_efficient(n);
+    cout << ans << "\n";
+}
